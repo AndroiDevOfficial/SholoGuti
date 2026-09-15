@@ -5,48 +5,8 @@
     "title": "Starter Bead Pack"
   },
   {
-    "coins": 250,
-    "price": 1.99,
-    "title": "Warrior Guti Pack"
-  },
-  {
-    "coins": 400,
-    "price": 3.99,
-    "title": "Commander Vault"
-  },
-  {
-    "coins": 600,
-    "price": 5.99,
-    "title": "Tactician Cache"
-  },
-  {
-    "coins": 800,
-    "price": 7.99,
-    "title": "Challenger Stash"
-  },
-  {
-    "coins": 1000,
-    "price": 9.99,
-    "title": "General Chest"
-  },
-  {
-    "coins": 1500,
-    "price": 14.99,
-    "title": "King's Treasure"
-  },
-  {
-    "coins": 2500,
-    "price": 24.99,
-    "title": "Emperor's Palace"
-  },
-  {
-    "coins": 5000,
-    "price": 44.99,
-    "title": "Sholo Guti Overlord"
-  },
-  {
     "coins": 10000,
-    "price": 79.99,
+    "price": 10.01,
     "title": "Infinite Legend Chest"
   }
 ]

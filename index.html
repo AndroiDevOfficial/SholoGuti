@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sixteen Soldiers (Sholo Guti) — Premium Board Game App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --surface-dark: #1E1E1E;
+            --surface-dark-accent: #262626;
+            --primary: #81C784;
+            --primary-hover: #66BB6A;
+            --accent: #FFD54F;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B3B3B3;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--surface-dark-accent);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(18, 18, 18, 0.8);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--bg-dark);
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(129, 199, 132, 0.3);
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-nav {
+            background-color: var(--primary);
+            color: var(--bg-dark) !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 12px rgba(129, 199, 132, 0.2);
+        }
+
+        .cta-nav:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(129, 199, 132, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            background-color: rgba(129, 199, 132, 0.1);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 24px;
+            border: 1px solid rgba(129, 199, 132, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 580px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+            box-shadow: 0 8px 24px rgba(129, 199, 132, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-dark-accent);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .phone-mockup {
+            width: 280px;
+            height: 570px;
+            background: #1e1e1e;
+            border: 10px solid #2d2d2d;
+            border-radius: 40px;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .phone-notch {
+            width: 120px;
+            height: 25px;
+            background: #2d2d2d;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            z-index: 10;
+        }
+
+        /* Inside Mockup Board UI */
+        .mock-board {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 15px;
+            background: #141414;
+            border-radius: 16px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            margin: 30px 0 15px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .mock-piece {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            margin: auto;
+        }
+
+        .mock-piece.green {
+            background: linear-gradient(135deg, var(--primary), #4CAF50);
+        }
+
+        .mock-piece.gold {
+            background: linear-gradient(135deg, var(--accent), #F57C00);
+        }
+
+        .mock-active-turn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(129, 199, 132, 0.15);
+            border: 1px solid var(--primary);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 9px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .mock-ui-footer {
+            height: 44px;
+            background: var(--surface-dark-accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .mock-ui-coins {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--accent);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--surface-dark);
+            position: relative;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features-header h2 {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .features-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background-color: var(--surface-dark-accent);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(129, 199, 132, 0.3);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-icon {
+            width: 54px;
+            height: 54px;
+            background-color: rgba(129, 199, 132, 0.1);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(129, 199, 132, 0.15);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* How to Play */
+        .how-to-play {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .steps-header h2 {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .steps-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 213, 79, 0.1);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 213, 79, 0.2);
+        }
+
+        .step-content h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .board-canvas-preview {
+            background-color: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .sholo-grid-visual {
+            width: 260px;
+            height: 260px;
+            position: relative;
+            background: #252525;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+        }
+
+        .sholo-line {
+            position: absolute;
+            background: rgba(129, 199, 132, 0.4);
+        }
+
+        .sholo-line.h1 { top: 25%; left: 0; width: 100%; height: 2px; }
+        .sholo-line.h2 { top: 50%; left: 0; width: 100%; height: 2px; }
+        .sholo-line.h3 { top: 75%; left: 0; width: 100%; height: 2px; }
+        .sholo-line.v1 { left: 25%; top: 0; width: 2px; height: 100%; }
+        .sholo-line.v2 { left: 50%; top: 0; width: 2px; height: 100%; }
+        .sholo-line.v3 { left: 75%; top: 0; width: 2px; height: 100%; }
+        .sholo-line.d1 { top: 0; left: 0; width: 141%; height: 2px; transform: rotate(45deg); transform-origin: top left; }
+        .sholo-line.d2 { top: 0; right: 0; width: 141%; height: 2px; transform: rotate(-45deg); transform-origin: top right; }
+
+        /* Store Specs */
+        .store-specs {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--surface-dark-accent) 100%);
+        }
+
+        .store-box {
+            background: linear-gradient(135deg, var(--surface-dark) 0%, #151515 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .store-badge {
+            background-color: rgba(255, 213, 79, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 213, 79, 0.2);
+        }
+
+        .store-box h2 {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .store-box h2 span {
+            color: var(--primary);
+        }
+
+        .store-box p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .store-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .store-list-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .store-list-icon {
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0d0d0d;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-copyright {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-copyright span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 992px) {
+            .hero-grid, .steps-container, .store-box {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <div class="logo-icon">১৬</div>
+                <div class="logo-text">Sixteen Soldiers</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#howtoplay">How to Play</a></li>
+                <li><a href="#billing">Billing Specs</a></li>
+                <li><a href="#" class="cta-nav">Download App</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Area -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-badge">Board Game Classic</span>
+                <h1>The Legendary Board Game <span>Sixteen Soldiers</span></h1>
+                <p class="hero-desc">Enjoy the authentic ষোল গুটি (Sholo Guti) experience on your Android phone. Play local offline pass & play with your friends or master your tactics against our ultra-smart AI engine.</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download APK File
+                    </a>
+                    <a href="#features" class="btn btn-secondary">Explore Features</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="mock-active-turn">PLAYER TURN</div>
+                    
+                    <div class="mock-board">
+                        <div class="sholo-line h1"></div>
+                        <div class="sholo-line h2"></div>
+                        <div class="sholo-line h3"></div>
+                        <div class="sholo-line v1"></div>
+                        <div class="sholo-line v2"></div>
+                        <div class="sholo-line v3"></div>
+                        
+                        <div class="mock-piece green"></div>
+                        <div class="mock-piece gold"></div>
+                        <div class="mock-piece green"></div>
+                        <div class="mock-piece gold"></div>
+                        <div class="mock-piece gold"></div>
+                        <div class="mock-piece green"></div>
+                        <div class="mock-piece green"></div>
+                        <div class="mock-piece gold"></div>
+                    </div>
+
+                    <div class="mock-ui-footer">
+                        <span>Sixteen Soldiers</span>
+                        <div class="mock-ui-coins">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                            <span>250 Coins</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Area -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="features-header">
+                <h2>Outstanding Game Features</h2>
+                <p>Designed to provide a smooth, engaging, and premium gaming experience on your Android device.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Intelligent AI Opponent</h3>
+                    <p>Engineered with adaptive heuristic levels. Challenge yourself with Easy, Medium, Hard, and Champion difficulty to refine your tactical board movements.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Local Pass & Play</h3>
+                    <p>Play offline with friends and family on a single screen. Featuring real-time turn switching and smart check indicators for maximum competition.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Google Play Billing V6</h3>
+                    <p>Real-time native transaction checkout flows. Safely buy extra coin packs, display secure Transaction IDs, and instantly copy receipts to the clipboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Play Section -->
+    <section id="howtoplay" class="how-to-play">
+        <div class="container steps-container">
+            <div class="steps-header">
+                <h2>How to Play Sholo Guti</h2>
+                <p>A classic strategic board game of capture, native to Southern Asia. Master the rules in 4 easy steps:</p>
+                
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Setup the Grid</h4>
+                        <p>Each player starts with 16 beads/soldiers placed on their respective side of the board layout.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Alternating Moves</h4>
+                        <p>Players take turns moving one of their soldiers to an adjacent vacant intersection point along the grid lines.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Capture by Jumping</h4>
+                        <p>Jump directly over an opponent's adjacent soldier into an empty space right behind them to capture their bead.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Achieve Victory</h4>
+                        <p>The player who successfully captures all 16 of the opponent's soldiers wins the classic game!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="board-canvas-preview">
+                <div class="sholo-grid-visual">
+                    <div class="sholo-line h1"></div>
+                    <div class="sholo-line h2"></div>
+                    <div class="sholo-line h3"></div>
+                    <div class="sholo-line v1"></div>
+                    <div class="sholo-line v2"></div>
+                    <div class="sholo-line v3"></div>
+                    <div class="sholo-line d1"></div>
+                    <div class="sholo-line d2"></div>
+                </div>
+                <div style="text-align: center;">
+                    <p style="font-weight: 700; margin-bottom: 4px;">Authentic Traditional Board Layout</p>
+                    <p style="font-size: 13px; color: var(--text-secondary);">Features 37 node intersection points for maximum strategic depth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Billing Details Panel -->
+    <section id="billing" class="store-specs">
+        <div class="container">
+            <div class="store-box">
+                <div>
+                    <span class="store-badge">Official Store Integration</span>
+                    <h2>Secure In-App <span>Coin Store</span></h2>
+                    <p>Our app provides a secure, reliable transaction system fully compliant with the latest Google Play policies.</p>
+                    <div class="store-list">
+                        <div class="store-list-item">
+                            <span class="store-list-icon">✓</span> Play Billing V6
+                        </div>
+                        <div class="store-list-item">
+                            <span class="store-list-icon">✓</span> Copyable Receipts
+                        </div>
+                        <div class="store-list-item">
+                            <span class="store-list-icon">✓</span> Play Sandbox Friendly
+                        </div>
+                        <div class="store-list-item">
+                            <span class="store-list-icon">✓</span> Zero Private Data Collected
+                        </div>
+                    </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 32px; border-radius: 16px;">
+                    <p style="font-size: 11px; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase;">Real Receipt Overlay View</p>
+                    <div style="background: var(--surface-dark-accent); border: 1px solid rgba(129,199,132,0.2); border-radius: 12px; padding: 16px; text-align: center;">
+                        <span style="font-size: 24px; display: block; margin-bottom: 8px;">🎉</span>
+                        <p style="font-weight: 700; color: #fff; margin-bottom: 4px;">Purchase Successful!</p>
+                        <p style="font-size: 12px; margin-bottom: 12px;">You added +100 Coins to your balance.</p>
+                        
+                        <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 10px; font-size: 11px; font-family: monospace; border: 1px solid var(--border-color); margin-bottom: 12px;">
+                            <span style="color: var(--primary); font-size: 9px; display: block; margin-bottom: 2px; font-weight: 700;">GOOGLE PLAY ORDER ID</span>
+                            GPA.3308-4122-8921-48201
+                        </div>
+                        
+                        <div style="background: rgba(129,199,132,0.1); border: 1px dashed var(--primary); display: inline-block; padding: 4px 12px; border-radius: 8px; font-size: 10px; color: var(--primary); font-weight: 700;">
+                            ✓ COPIED TO CLIPBOARD
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <a href="#" class="logo" style="margin-bottom: 10px;">
+                    <div class="logo-icon">১৬</div>
+                    <div class="logo-text">Sixteen Soldiers</div>
+                </a>
+                <p style="font-size: 13px; color: var(--text-secondary);">Classic Sixteen Soldiers board game for mobile.</p>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 <span>Sixteen Soldiers</span>. All rights reserved. Developed with Play Billing V6 compliance.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

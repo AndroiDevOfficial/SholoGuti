@@ -5,8 +5,23 @@
     "title": "Starter Bead Pack"
   },
   {
-    "coins": 10000,
-    "price": 10.01,
-    "title": "Infinite Legend Chest"
+    "coins": 200,
+    "price": 2.02,
+    "title": "Warrior Guti Pack"
+  },
+  {
+    "coins": 300,
+    "price": 3.03,
+    "title": "Commander Vault"
+  },
+  {
+    "coins": 400,
+    "price": 4.04,
+    "title": "Tactician Cache"
+  },
+  {
+    "coins": 500,
+    "price": 5.05,
+    "title": "Challenger Stash"
   }
 ]

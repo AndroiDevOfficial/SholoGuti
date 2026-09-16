@@ -474,27 +474,15 @@
         }
 
         .sholo-grid-visual {
-            width: 260px;
-            height: 260px;
+            width: 240px;
+            height: 480px;
             position: relative;
-            background: #252525;
-            border-radius: 8px;
-            border: 2px solid var(--primary);
+            background: radial-gradient(circle, #222222 0%, #151515 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px;
+            box-shadow: inset 0 4px 20px rgba(0,0,0,0.6);
         }
-
-        .sholo-line {
-            position: absolute;
-            background: rgba(129, 199, 132, 0.4);
-        }
-
-        .sholo-line.h1 { top: 25%; left: 0; width: 100%; height: 2px; }
-        .sholo-line.h2 { top: 50%; left: 0; width: 100%; height: 2px; }
-        .sholo-line.h3 { top: 75%; left: 0; width: 100%; height: 2px; }
-        .sholo-line.v1 { left: 25%; top: 0; width: 2px; height: 100%; }
-        .sholo-line.v2 { left: 50%; top: 0; width: 2px; height: 100%; }
-        .sholo-line.v3 { left: 75%; top: 0; width: 2px; height: 100%; }
-        .sholo-line.d1 { top: 0; left: 0; width: 141%; height: 2px; transform: rotate(45deg); transform-origin: top left; }
-        .sholo-line.d2 { top: 0; right: 0; width: 141%; height: 2px; transform: rotate(-45deg); transform-origin: top right; }
 
         /* Store Specs */
         .store-specs {
@@ -623,7 +611,9 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#howtoplay">How to Play</a></li>
                 <li><a href="#billing">Billing Specs</a></li>
-                <li><a href="#" class="cta-nav">Download App</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                <li><a href="support-refund.html">Support & Refunds</a></li>
             </ul>
         </div>
     </header>
@@ -644,36 +634,107 @@
                 </div>
             </div>
             
-            <div class="hero-visual">
-                <div class="phone-mockup">
-                    <div class="phone-notch"></div>
-                    <div class="mock-active-turn">PLAYER TURN</div>
+            <div class="hero-visual" style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+                <div class="phone-mockup" style="position: relative;">
+                    <div class="phone-notch" style="z-index: 10;"></div>
                     
-                    <div class="mock-board">
-                        <div class="sholo-line h1"></div>
-                        <div class="sholo-line h2"></div>
-                        <div class="sholo-line h3"></div>
-                        <div class="sholo-line v1"></div>
-                        <div class="sholo-line v2"></div>
-                        <div class="sholo-line v3"></div>
-                        
-                        <div class="mock-piece green"></div>
-                        <div class="mock-piece gold"></div>
-                        <div class="mock-piece green"></div>
-                        <div class="mock-piece gold"></div>
-                        <div class="mock-piece gold"></div>
-                        <div class="mock-piece green"></div>
-                        <div class="mock-piece green"></div>
-                        <div class="mock-piece gold"></div>
-                    </div>
+                    <!-- Screenshot image preview layer (hidden by default) -->
+                    <img id="screenshotPreview" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 30px; position: absolute; top: 0; left: 0; z-index: 5;" alt="Uploaded Game Screenshot" />
 
-                    <div class="mock-ui-footer">
-                        <span>Sixteen Soldiers</span>
-                        <div class="mock-ui-coins">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-                            <span>250 Coins</span>
+                    <!-- Default Board Simulation Content -->
+                    <div id="defaultPhoneContent" style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; position: relative; width: 100%;">
+                        <div class="mock-active-turn" style="top: 30px;">PLAYER TURN</div>
+                        
+                        <div class="mock-board" style="display: block; margin: 30px 0 15px; padding: 5px;">
+                            <!-- Tiny version of the mathematical SVG board -->
+                            <svg viewBox="0 0 240 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                <style>
+                                    .mini-line { stroke: rgba(129, 199, 132, 0.4); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+                                    .mini-node { fill: #FFD54F; stroke: #121212; stroke-width: 1.5; }
+                                    .mini-piece { stroke: #121212; stroke-width: 1; }
+                                    .mini-piece.green { fill: #81C784; }
+                                    .mini-piece.gold { fill: #FFD54F; }
+                                </style>
+                                
+                                <!-- Grid Lines -->
+                                <line x1="20" y1="140" x2="220" y2="140" class="mini-line" />
+                                <line x1="20" y1="190" x2="220" y2="190" class="mini-line" />
+                                <line x1="20" y1="240" x2="220" y2="240" class="mini-line" />
+                                <line x1="20" y1="290" x2="220" y2="290" class="mini-line" />
+                                <line x1="20" y1="340" x2="220" y2="340" class="mini-line" />
+                                
+                                <line x1="20" y1="140" x2="20" y2="340" class="mini-line" />
+                                <line x1="70" y1="140" x2="70" y2="340" class="mini-line" />
+                                <line x1="120" y1="140" x2="120" y2="340" class="mini-line" />
+                                <line x1="170" y1="140" x2="170" y2="340" class="mini-line" />
+                                <line x1="220" y1="140" x2="220" y2="340" class="mini-line" />
+                                
+                                <line x1="20" y1="140" x2="120" y2="240" class="mini-line" />
+                                <line x1="120" y1="140" x2="20" y2="240" class="mini-line" />
+                                <line x1="120" y1="140" x2="220" y2="240" class="mini-line" />
+                                <line x1="220" y1="140" x2="120" y2="240" class="mini-line" />
+                                <line x1="20" y1="240" x2="120" y2="340" class="mini-line" />
+                                <line x1="120" y1="240" x2="20" y2="340" class="mini-line" />
+                                <line x1="120" y1="240" x2="220" y2="340" class="mini-line" />
+                                <line x1="220" y1="240" x2="120" y2="340" class="mini-line" />
+                                
+                                <!-- Top Triangle -->
+                                <line x1="120" y1="40" x2="20" y2="140" class="mini-line" />
+                                <line x1="120" y1="40" x2="120" y2="140" class="mini-line" />
+                                <line x1="120" y1="40" x2="220" y2="140" class="mini-line" />
+                                <line x1="86.7" y1="73.3" x2="153.3" y2="73.3" class="mini-line" />
+                                <line x1="53.3" y1="106.6" x2="186.7" y2="106.6" class="mini-line" />
+                                
+                                <!-- Bottom Triangle -->
+                                <line x1="120" y1="440" x2="20" y2="340" class="mini-line" />
+                                <line x1="120" y1="440" x2="120" y2="340" class="mini-line" />
+                                <line x1="120" y1="440" x2="220" y2="340" class="mini-line" />
+                                <line x1="86.7" y1="406.7" x2="153.3" y2="406.7" class="mini-line" />
+                                <line x1="53.3" y1="373.4" x2="186.7" y2="373.4" class="mini-line" />
+                                
+                                <!-- Miniature Game Pieces (Active Board Simulation) -->
+                                <circle cx="20" cy="140" r="8" class="mini-piece green" />
+                                <circle cx="70" cy="140" r="8" class="mini-piece green" />
+                                <circle cx="120" cy="140" r="8" class="mini-piece green" />
+                                <circle cx="170" cy="140" r="8" class="mini-piece green" />
+                                <circle cx="220" cy="140" r="8" class="mini-piece green" />
+                                
+                                <circle cx="120" cy="40" r="8" class="mini-piece green" />
+                                <circle cx="120" cy="73.3" r="7" class="mini-piece green" />
+                                <circle cx="120" cy="106.6" r="7" class="mini-piece green" />
+                                
+                                <circle cx="20" cy="340" r="8" class="mini-piece gold" />
+                                <circle cx="70" cy="340" r="8" class="mini-piece gold" />
+                                <circle cx="120" cy="340" r="8" class="mini-piece gold" />
+                                <circle cx="170" cy="340" r="8" class="mini-piece gold" />
+                                <circle cx="220" cy="340" r="8" class="mini-piece gold" />
+                                
+                                <circle cx="120" cy="440" r="8" class="mini-piece gold" />
+                                <circle cx="120" cy="406.7" r="7" class="mini-piece gold" />
+                                <circle cx="120" cy="373.4" r="7" class="mini-piece gold" />
+                            </svg>
+                        </div>
+
+                        <div class="mock-ui-footer" style="width: 100%;">
+                            <span>Sixteen Soldiers</span>
+                            <div class="mock-ui-coins">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                                <span>250 Coins</span>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Bezel screenshot adding utilities -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <label for="screenshotFileUploader" style="display: inline-flex; align-items: center; gap: 8px; background-color: var(--surface-dark-accent); border: 1px solid var(--border-color); color: var(--primary); padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; transition: var(--transition); text-transform: uppercase; letter-spacing: 0.5px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        Add Custom Screenshot
+                    </label>
+                    <input type="file" id="screenshotFileUploader" accept="image/*" style="display: none;" />
+                    <button id="clearScreenshotBtn" style="background: none; border: none; color: #FF5252; font-size: 11px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 8px;">
+                        Reset To Default UI
+                    </button>
                 </div>
             </div>
         </div>
@@ -752,14 +813,115 @@
 
             <div class="board-canvas-preview">
                 <div class="sholo-grid-visual">
-                    <div class="sholo-line h1"></div>
-                    <div class="sholo-line h2"></div>
-                    <div class="sholo-line h3"></div>
-                    <div class="sholo-line v1"></div>
-                    <div class="sholo-line v2"></div>
-                    <div class="sholo-line v3"></div>
-                    <div class="sholo-line d1"></div>
-                    <div class="sholo-line d2"></div>
+                    <svg viewBox="0 0 240 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                        <style>
+                            .board-line { stroke: #81C784; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+                            .board-node { fill: #FFD54F; stroke: #121212; stroke-width: 1.5; }
+                            .board-node.highlight { fill: #81C784; r: 7.5; }
+                        </style>
+                        
+                        <!-- Horizontals -->
+                        <line x1="20" y1="140" x2="220" y2="140" class="board-line" />
+                        <line x1="20" y1="190" x2="220" y2="190" class="board-line" />
+                        <line x1="20" y1="240" x2="220" y2="240" class="board-line" />
+                        <line x1="20" y1="290" x2="220" y2="290" class="board-line" />
+                        <line x1="20" y1="340" x2="220" y2="340" class="board-line" />
+                        
+                        <!-- Verticals -->
+                        <line x1="20" y1="140" x2="20" y2="340" class="board-line" />
+                        <line x1="70" y1="140" x2="70" y2="340" class="board-line" />
+                        <line x1="120" y1="140" x2="120" y2="340" class="board-line" />
+                        <line x1="170" y1="140" x2="170" y2="340" class="board-line" />
+                        <line x1="220" y1="140" x2="220" y2="340" class="board-line" />
+                        
+                        <!-- Diagonals across quadrants -->
+                        <line x1="20" y1="140" x2="120" y2="240" class="board-line" />
+                        <line x1="120" y1="140" x2="20" y2="240" class="board-line" />
+                        <line x1="120" y1="140" x2="220" y2="240" class="board-line" />
+                        <line x1="220" y1="140" x2="120" y2="240" class="board-line" />
+                        <line x1="20" y1="240" x2="120" y2="340" class="board-line" />
+                        <line x1="120" y1="240" x2="20" y2="340" class="board-line" />
+                        <line x1="120" y1="240" x2="220" y2="340" class="board-line" />
+                        <line x1="220" y1="240" x2="120" y2="340" class="board-line" />
+                        
+                        <!-- Top Triangle -->
+                        <line x1="120" y1="40" x2="20" y2="140" class="board-line" />
+                        <line x1="120" y1="40" x2="70" y2="140" class="board-line" />
+                        <line x1="120" y1="40" x2="120" y2="140" class="board-line" />
+                        <line x1="120" y1="40" x2="170" y2="140" class="board-line" />
+                        <line x1="120" y1="40" x2="220" y2="140" class="board-line" />
+                        <!-- Parallel bars inside Top Triangle -->
+                        <line x1="86.7" y1="73.3" x2="153.3" y2="73.3" class="board-line" />
+                        <line x1="53.3" y1="106.6" x2="186.7" y2="106.6" class="board-line" />
+                        
+                        <!-- Bottom Triangle -->
+                        <line x1="120" y1="440" x2="20" y2="340" class="board-line" />
+                        <line x1="120" y1="440" x2="70" y2="340" class="board-line" />
+                        <line x1="120" y1="440" x2="120" y2="340" class="board-line" />
+                        <line x1="120" y1="440" x2="170" y2="340" class="board-line" />
+                        <line x1="120" y1="440" x2="220" y2="340" class="board-line" />
+                        <!-- Parallel bars inside Bottom Triangle -->
+                        <line x1="86.7" y1="406.7" x2="153.3" y2="406.7" class="board-line" />
+                        <line x1="53.3" y1="373.4" x2="186.7" y2="373.4" class="board-line" />
+                        
+                        <!-- Intersections Dots -->
+                        <!-- Row 1 -->
+                        <circle cx="20" cy="140" r="5" class="board-node" />
+                        <circle cx="70" cy="140" r="5" class="board-node" />
+                        <circle cx="120" cy="140" r="5" class="board-node" />
+                        <circle cx="170" cy="140" r="5" class="board-node" />
+                        <circle cx="220" cy="140" r="5" class="board-node" />
+                        <!-- Row 2 -->
+                        <circle cx="20" cy="190" r="5" class="board-node" />
+                        <circle cx="70" cy="190" r="5" class="board-node highlight" />
+                        <circle cx="120" cy="190" r="5" class="board-node" />
+                        <circle cx="170" cy="190" r="5" class="board-node" />
+                        <circle cx="220" cy="190" r="5" class="board-node" />
+                        <!-- Row 3 -->
+                        <circle cx="20" cy="240" r="5" class="board-node" />
+                        <circle cx="70" cy="240" r="5" class="board-node" />
+                        <circle cx="120" cy="240" r="5" class="board-node" />
+                        <circle cx="170" cy="240" r="5" class="board-node" />
+                        <circle cx="220" cy="240" r="5" class="board-node" />
+                        <!-- Row 4 -->
+                        <circle cx="20" cy="290" r="5" class="board-node" />
+                        <circle cx="70" cy="290" r="5" class="board-node" />
+                        <circle cx="120" cy="290" r="5" class="board-node" />
+                        <circle cx="170" cy="290" r="5" class="board-node" />
+                        <circle cx="220" cy="290" r="5" class="board-node" />
+                        <!-- Row 5 -->
+                        <circle cx="20" cy="340" r="5" class="board-node" />
+                        <circle cx="70" cy="340" r="5" class="board-node" />
+                        <circle cx="120" cy="340" r="5" class="board-node" />
+                        <circle cx="170" cy="340" r="5" class="board-node" />
+                        <circle cx="220" cy="340" r="5" class="board-node" />
+                        
+                        <!-- Top triangle extra nodes -->
+                        <circle cx="120" cy="40" r="5" class="board-node" />
+                        <circle cx="86.7" cy="73.3" r="4.5" class="board-node" />
+                        <circle cx="103.3" cy="73.3" r="4.5" class="board-node" />
+                        <circle cx="120" cy="73.3" r="4.5" class="board-node" />
+                        <circle cx="136.7" cy="73.3" r="4.5" class="board-node" />
+                        <circle cx="153.3" cy="73.3" r="4.5" class="board-node" />
+                        <circle cx="53.3" cy="106.6" r="4.5" class="board-node" />
+                        <circle cx="86.7" cy="106.6" r="4.5" class="board-node" />
+                        <circle cx="120" cy="106.6" r="4.5" class="board-node" />
+                        <circle cx="153.3" cy="106.6" r="4.5" class="board-node" />
+                        <circle cx="186.7" cy="106.6" r="4.5" class="board-node" />
+                        
+                        <!-- Bottom triangle extra nodes -->
+                        <circle cx="120" cy="440" r="5" class="board-node" />
+                        <circle cx="86.7" cy="406.7" r="4.5" class="board-node" />
+                        <circle cx="103.3" cy="406.7" r="4.5" class="board-node" />
+                        <circle cx="120" cy="406.7" r="4.5" class="board-node" />
+                        <circle cx="136.7" cy="406.7" r="4.5" class="board-node" />
+                        <circle cx="153.3" cy="406.7" r="4.5" class="board-node" />
+                        <circle cx="53.3" cy="373.4" r="4.5" class="board-node" />
+                        <circle cx="86.7" cy="373.4" r="4.5" class="board-node" />
+                        <circle cx="120" cy="373.4" r="4.5" class="board-node" />
+                        <circle cx="153.3" cy="373.4" r="4.5" class="board-node" />
+                        <circle cx="186.7" cy="373.4" r="4.5" class="board-node" />
+                    </svg>
                 </div>
                 <div style="text-align: center;">
                     <p style="font-weight: 700; margin-bottom: 4px;">Authentic Traditional Board Layout</p>
@@ -823,11 +985,46 @@
                 </a>
                 <p style="font-size: 13px; color: var(--text-secondary);">Classic Sixteen Soldiers board game for mobile.</p>
             </div>
-            <div class="footer-copyright">
-                &copy; 2026 <span>Sixteen Soldiers</span>. All rights reserved. Developed with Play Billing V6 compliance.
+            <div class="footer-copyright" style="text-align: right; display: flex; flex-direction: column; gap: 8px;">
+                <div>
+                    <a href="privacy-policy.html" style="color: var(--primary); text-decoration: none; margin-right: 15px; font-size: 13px;">Privacy Policy</a>
+                    <a href="terms-and-conditions.html" style="color: var(--primary); text-decoration: none; margin-right: 15px; font-size: 13px;">Terms & Conditions</a>
+                    <a href="support-and-refund.html" style="color: var(--primary); text-decoration: none; font-size: 13px;">Support & Refunds</a>
+                </div>
+                <div style="font-size: 12px; color: var(--text-secondary);">
+                    &copy; 2026 <span>Sixteen Soldiers</span>. All rights reserved. Developed with Play Billing V6 compliance.
+                </div>
             </div>
         </div>
     </footer>
 
+    <script>
+        const fileUploader = document.getElementById('screenshotFileUploader');
+        const screenshotPreview = document.getElementById('screenshotPreview');
+        const defaultPhoneContent = document.getElementById('defaultPhoneContent');
+        const clearScreenshotBtn = document.getElementById('clearScreenshotBtn');
+
+        fileUploader.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    screenshotPreview.src = event.target.result;
+                    screenshotPreview.style.display = 'block';
+                    defaultPhoneContent.style.display = 'none';
+                    clearScreenshotBtn.style.display = 'inline-block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        clearScreenshotBtn.addEventListener('click', function() {
+            fileUploader.value = '';
+            screenshotPreview.style.display = 'none';
+            screenshotPreview.src = '';
+            defaultPhoneContent.style.display = 'flex';
+            clearScreenshotBtn.style.display = 'none';
+        });
+    </script>
 </body>
 </html>

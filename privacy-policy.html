@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Sixteen Soldiers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --surface-dark: #1E1E1E;
+            --surface-dark-accent: #262626;
+            --primary: #81C784;
+            --accent: #FFD54F;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B3B3B3;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 40px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 30px;
+        }
+
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .last-updated {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent);
+            padding-left: 12px;
+        }
+
+        p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .contact-info {
+            background-color: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .email {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .email:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-link">
+            ← Back to Home
+        </a>
+        
+        <div class="header">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: September 16, 2026</p>
+        </div>
+
+        <div class="section">
+            <h2>1. Introduction</h2>
+            <p>Welcome to <strong>Sixteen Soldiers (Sholo Guti)</strong>. We respect your privacy and are committed to protecting the metadata and information of our players. This Privacy Policy outlines our guidelines regarding any data collected, used, or processed during your gameplay experience.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Information We Collect</h2>
+            <p><strong>Sixteen Soldiers</strong> is designed to protect your privacy. We adopt an offline-first architecture to minimize data footprint:</p>
+            <ul>
+                <li><strong>No Personal Information:</strong> We do not collect, request, or require personal identifiable details such as your name, email address, phone number, contacts, or location.</li>
+                <li><strong>Dynamic Coin Packages:</strong> To display dynamic item listings in our Coin Store, the app fetches static pricing configurations over secure HTTPS protocols (`https://androidevs.github.io`). No unique device details are sent during this process.</li>
+                <li><strong>Local Save State:</strong> Your total coins balance, game statistics, settings preferences, and achievements are stored strictly locally on your own physical device using Android's encrypted secure preferences storage.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>3. Third-Party Services & APIs</h2>
+            <p>The application integrates official Google Play Store framework libraries to provide standard monetization and gameplay features. These external providers may collect certain non-personally identifiable metadata in accordance with their respective privacy standards:</p>
+            <ul>
+                <li><strong>Google Play Billing Services:</strong> To process secure payments for coin packs, the official Google Play Billing Library V6 communicates directly with Google Play Services to complete financial transactions. We do not access or store your bank, debit/credit card, or processing credentials.</li>
+                <li><strong>Google Play Games Services (Optional):</strong> If you choose to log in, Google Play Games Services may track game achievements and leaderboard status linked to your global player ID.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>4. Children's Privacy (Families Policy Compliance)</h2>
+            <p>Our game is fully compliant with the <strong>Google Play Developer Families Policy</strong>:</p>
+            <ul>
+                <li>We do not collect any personal identifier details from players.</li>
+                <li>The application does not contain behavioral, interest-based tracking advertisements.</li>
+                <li>All monetization features (Coin Store purchases) require standard Google Play Console child-safety verification (e.g., Google Account password prompt or parent authorization) before execution.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>5. Data Retention & Deletion</h2>
+            <p>Since we do not host user registration or account databases on remote cloud servers, we do not store your data online. If you wish to delete your entire local data profile (coins history, settings, and high scores), you can do so easily by navigating to your Android System Settings ➔ Apps ➔ Sixteen Soldiers ➔ <strong>Clear Storage / Clear Data</strong>.</p>
+        </div>
+
+        <div class="section">
+            <h2>6. Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy periodically to adapt to changing legal requirements or Play Store guidelines. Any updates will be updated on this page with an adjusted "Last Updated" timestamp.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Contact Support</h2>
+            <p>If you have any questions, inquiries, or feedback regarding your privacy, please reach out to us:</p>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:rifatahmedsajeeb@gmail.com" class="email">rifatahmedsajeeb@gmail.com</a></p>
+                <p><strong>Developer:</strong> Sixteen Soldiers Game Team</p>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Sixteen Soldiers. Built in compliance with Google Play Store Developer Policies.
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,11 +1,11 @@
-#  Sixteen Soldiers — Google Play Production & Billing Integration Guide 🚀
+# Sixteen Soldiers — Google Play Production & Billing Integration Guide 🚀
 
-This guide provides a comprehensive, step-by-step workflow to prepare your **Sixteen Soldiers (Sholo Guti)** game for a successful release on the **Google Play Store**, utilizing the newly integrated **Google Play Billing Library V6**.
+This guide provides a comprehensive, step-by-step workflow to prepare your **Sixteen Soldiers (Sholo Guti)** game for a successful release on the **Google Play Store**, utilizing the newly integrated **Google Play Billing Library V6** and your live dynamic Coin Store feed.
 
 ---
 
 ## 📂 Table of Contents
-1. [Overview of Current Features](#1-overview-of-current-features)
+1. [Updated Store Package JSON Feed](#1-updated-store-package-json-feed)
 2. [Step-by-Step Production Build Setup](#2-step-by-step-production-build-setup)
 3. [Registering Products on Google Play Console](#3-registering-products-on-google-play-console)
 4. [Setting Up Sandbox & Live Billing Testing](#4-setting-up-sandbox--live-billing-testing)
@@ -13,12 +13,76 @@ This guide provides a comprehensive, step-by-step workflow to prepare your **Six
 
 ---
 
-## 1. Overview of Current Features
+## 1. Updated Store Package JSON Feed
 
-*   **Google Play Billing Library V6 (`com.android.billingclient:billing-ktx:6.2.1`)**: Embedded natively to process purchases securely and fast.
-*   **Dynamic Failover Sandbox**: Automatically detects if the Play Store billing pipeline is active. Fallbacks smoothly to a lifelike transaction simulator during development or emulator tests.
-*   **Receipt Verification Screen**: Displays authentic Google Play format Transaction IDs (e.g., `GPA.XXXX-XXXX-XXXX-XXXXX`) with one-click clipboard copying.
-*   **Automatic Cache-Busted Feed**: Dynamic timestamping (`?t=timestamp`) is appended to your raw GitHub URL to ensure store pricing modifications show instantly inside the app!
+We have successfully updated the app parser to extract and utilize the official Google Play `id` directly from your dynamic remote JSON feed. 
+
+Please copy the JSON block below and update your hosted file on GitHub Pages (`https://androidevs.github.io/SixteenSoldiers/Store/Package.json`):
+
+```json
+[
+  {
+    "id": "coins_100",
+    "coins": 100,
+    "price": 1.01,
+    "title": "Starter Bead Pack"
+  },
+  {
+    "id": "coins_250",
+    "coins": 250,
+    "price": 1.99,
+    "title": "Warrior Guti Pack"
+  },
+  {
+    "id": "coins_400",
+    "coins": 400,
+    "price": 3.99,
+    "title": "Commander Vault"
+  },
+  {
+    "id": "coins_600",
+    "coins": 600,
+    "price": 5.99,
+    "title": "Tactician Cache"
+  },
+  {
+    "id": "coins_800",
+    "coins": 800,
+    "price": 7.99,
+    "title": "Challenger Stash"
+  },
+  {
+    "id": "coins_1000",
+    "coins": 1000,
+    "price": 9.99,
+    "title": "General Chest"
+  },
+  {
+    "id": "coins_1500",
+    "coins": 1500,
+    "price": 14.99,
+    "title": "King's Treasure"
+  },
+  {
+    "id": "coins_2500",
+    "coins": 2500,
+    "price": 24.99,
+    "title": "Emperor's Palace"
+  },
+  {
+    "id": "coins_5000",
+    "coins": 5000,
+    "price": 44.99,
+    "title": "Sholo Guti Overlord"
+  },
+  {
+    "id": "coins_10000",
+    "coins": 10000,
+    "price": 79.99,
+    "title": "Infinite Legend Chest"
+  }
+]
+```
 
 ---
 
@@ -63,17 +127,17 @@ To enable real-world payments, the in-app items must exist in your Google Play C
 3. Under the **Monetization** section in the left sidebar, click on **In-app products**.
 
 ### Step 3.2: Create Products to Match Your JSON
-Create products with IDs that match the dynamic format parsed from your GitHub `Package.json` (e.g., `coins_100`, `coins_250`, `coins_500`):
+Create products with IDs that match the `id` field defined in your dynamic JSON feed (e.g., `coins_100`, `coins_250`, `coins_400`):
 
 1. Click **Create product** in the upper-right corner.
 2. Fill out the form:
-   * **Product ID**: `coins_100` *(Must match your raw package data ID exactly!)*
-   * **Name**: `100 Coins Pack`
+   * **Product ID**: `coins_100` *(Must match the `id` string in the JSON exactly!)*
+   * **Name**: `Starter Bead Pack` *(Can be any name, but matching the JSON title is recommended)*
    * **Description**: `Instantly receive 100 extra coins to play Sixteeen Soldiers.`
-3. **Price**: Enter your price matching your raw JSON feed (e.g., `$0.99`).
+3. **Price**: Enter your price matching your raw JSON feed (e.g., `$1.01`).
 4. Click **Save** and then click **Activate**.
 
-*(Repeat these steps for every package defined in your live store JSON.)*
+*(Repeat these steps for every package defined in your live store JSON. Product IDs must match the `id` fields precisely.)*
 
 ---
 
@@ -105,6 +169,7 @@ Before submitting to Google's reviewers, verify you have checked these items:
 2. [ ] **Matching IDs**: Check that all product IDs registered on Google Console correspond to the exact spelling of package ids parsed from your raw GitHub JSON.
 3. [ ] **Play Store Listing**: Ensure you have uploaded at least 4 screenshots, a high-res app icon ($512 \times 512$), and a feature graphic ($1024 \times 500$).
 4. [ ] **Privacy Policy**: Add a valid privacy policy URL in your Store Presence dashboard (required for apps accessing the internet).
+5. [ ] **Policy & Support URLs**: Add the dynamic support, terms and privacy policy pages hosted on your landing page to the Google Play Store Console settings.
 
 ---
 
